@@ -3,9 +3,9 @@ import { Flip, Slide } from "react-reveal";
 
 const Banner = () => {
   return (
-    <div className="lg:px-12">
+    <div className="md:px-10 mb-10">
       <div
-        className="hero min-h-screen"
+        className="hero h-[500px] lg:h-[800px]"
         style={{
           backgroundImage:
             "url(https://i.postimg.cc/HkJnPd8B/daniel-lezuch-I4-Dc-RJ-Evd8-unsplash.jpg)",
