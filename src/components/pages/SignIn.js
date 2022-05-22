@@ -1,15 +1,28 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const SignIn = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data, e) => {
+    // console.log(data);
+    e.target.reset();
+  };
   return (
     <div>
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
         <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">
             Sign In
           </h2>
 
-          <form className="max-w-lg border rounded-lg mx-auto">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="max-w-lg border rounded-lg mx-auto"
+          >
             <div className="flex flex-col gap-4 p-4 md:p-8">
               <div>
                 <label
@@ -19,9 +32,17 @@ const SignIn = () => {
                   Email
                 </label>
                 <input
-                  name="email"
+                  placeholder="Your Email"
+                  {...register("email", {
+                    required: true,
+                    pattern: {
+                      value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                      message: "Looks like this is not an Email",
+                    },
+                  })}
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                 />
+                <p className="text-red-700 mt-2">{errors.email?.message}</p>
               </div>
 
               <div>
@@ -32,15 +53,23 @@ const SignIn = () => {
                   Password
                 </label>
                 <input
-                  name="password"
+                  placeholder="Your Password"
+                  type="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: {
+                      value: 6,
+                      message: "Passwords must be six or more characters", // JS only: <p>error message</p> TS only support string
+                    },
+                  })}
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                 />
+                <p className="text-red-700 mt-2">{errors.password?.message}</p>
               </div>
 
               <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 uppercase">
                 Sign In
               </button>
-
               <div className="flex justify-center items-center relative">
                 <span className="h-px bg-gray-300 absolute inset-x-0"></span>
                 <span className="bg-white text-gray-400 text-sm relative px-4">

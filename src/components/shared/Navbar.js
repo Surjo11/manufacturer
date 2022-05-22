@@ -44,7 +44,7 @@ const Navbar = () => {
           Bit by Bit
         </Link>
       </div>
-      <div className=" font-semibold text-lg navbar-center hidden lg:flex">
+      <div className=" font-semibold text-base navbar-center hidden lg:flex mt-1">
         <ul className="menu menu-horizontal p-0">
           <li>
             <Link to="/home">Home</Link>
