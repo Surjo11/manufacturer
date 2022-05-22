@@ -35,13 +35,16 @@ const Navbar = () => {
             <li>
               <Link to="/blogs">Blogs</Link>
             </li>
+            <li>
+              <Link to="/signin">Sign In</Link>
+            </li>
           </ul>
         </div>
-        <Link to="/" className=" font-semibold text-2xl">
+        <Link to="/" className=" font-semibold text-3xl">
           Bit by Bit
         </Link>
       </div>
-      <div className=" font-semibold text-xl navbar-center hidden lg:flex">
+      <div className=" font-semibold text-lg navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
             <Link to="/home">Home</Link>
@@ -51,6 +54,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/blogs">Blogs</Link>
+          </li>
+          <li>
+            <Link to="/signin">Sign In</Link>
           </li>
         </ul>
       </div>
