@@ -10,6 +10,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>} />
+        <Route path="home" element={<Home></Home>} />
         <Route path="blogs" element={<Blogs></Blogs>} />
       </Routes>
     </div>
