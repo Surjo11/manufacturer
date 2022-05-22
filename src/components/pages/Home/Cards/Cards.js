@@ -3,7 +3,7 @@ import sim from "./sim.png";
 import masterCard from "./master-card.png";
 const Cards = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-3 md:px-32">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-3 md:px-32 mt-16">
       <div className="card w-auto md:w-96 bg-gray-100 shadow-xl">
         <div className="card-body text-gray-500">
           <div className="flex justify-between mb-10">

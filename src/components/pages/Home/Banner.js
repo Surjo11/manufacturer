@@ -3,7 +3,7 @@ import { Flip, Slide } from "react-reveal";
 
 const Banner = () => {
   return (
-    <div className="md:px-10 mb-10">
+    <div className="md:px-10">
       <div
         className="hero h-[500px] lg:h-[800px]"
         style={{
