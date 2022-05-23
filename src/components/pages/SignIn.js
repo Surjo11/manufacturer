@@ -1,8 +1,15 @@
 import React from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  // Firebase Hooks
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  // HookForm
   const {
     register,
     formState: { errors },
@@ -12,6 +19,9 @@ const SignIn = () => {
     // console.log(data);
     e.target.reset();
   };
+  if (user) {
+    navigate("/home");
+  }
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
       <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">

@@ -3,9 +3,18 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Loading from "../shared/Loading";
+import { Toaster } from "react-hot-toast";
 const SignUp = () => {
+  const navigate = useNavigate();
+  //   FirebaseHooks
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  // User
+  if (user) {
+    navigate("/signin");
+  }
+  // HookForm
   const {
     register,
     formState: { errors },
@@ -16,9 +25,11 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     e.target.reset();
   };
-  const navigate = useNavigate();
-  if (user) {
-    navigate("/signin");
+
+  //   Error
+
+  if (loading) {
+    return <Loading></Loading>;
   }
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
@@ -105,6 +116,7 @@ const SignUp = () => {
             </p>
           </div>
         </form>
+        <Toaster />
       </div>
     </div>
   );
