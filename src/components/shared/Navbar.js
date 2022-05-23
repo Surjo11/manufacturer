@@ -30,32 +30,49 @@ const Navbar = () => {
               />
             </svg>
           </label>
-          <ul
-            tabIndex="0"
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            <li>
-              <a>My Portfolio</a>
-            </li>
-            <li>
-              <Link to="/blogs">Blogs</Link>
-            </li>
-            {user ? (
+          {user ? (
+            <ul
+              tabIndex="0"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/myportfolio">My Portfolio</Link>
+              </li>
+              <li>
+                <Link to="/blogs">Blogs</Link>
+              </li>
+              <li>
+                <Link to="/myportfolio">{user?.displayName}</Link>
+              </li>
               <button
                 onClick={handelSignOut}
                 className="btn btn-sm md:btn-md font-semibold"
               >
                 Sign Out
               </button>
-            ) : (
+            </ul>
+          ) : (
+            <ul
+              tabIndex="0"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/myportfolio">My Portfolio</Link>
+              </li>
+              <li>
+                <Link to="/blogs">Blogs</Link>
+              </li>
               <li>
                 <Link to="/signin">Sign In</Link>
               </li>
-            )}
-          </ul>
+            </ul>
+          )}
         </div>
         <Link to="/" className=" font-semibold text-3xl">
           Bit by Bit
@@ -89,7 +106,7 @@ const Navbar = () => {
               <Link to="/home">Home</Link>
             </li>
             <li>
-              <a>My Portfolio</a>
+              <Link to="/myportfolio">My Portfolio</Link>
             </li>
             <li>
               <Link to="/blogs">Blogs</Link>
