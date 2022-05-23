@@ -1,7 +1,15 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Navbar = () => {
+  const [user, loading, error] = useAuthState(auth);
+  console.log(user?.displayName);
+  const handelSignOut = () => {
+    signOut(auth);
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -35,9 +43,18 @@ const Navbar = () => {
             <li>
               <Link to="/blogs">Blogs</Link>
             </li>
-            <li>
-              <Link to="/signin">Sign In</Link>
-            </li>
+            {user ? (
+              <button
+                onClick={handelSignOut}
+                className="btn btn-sm md:btn-md font-semibold"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+            )}
           </ul>
         </div>
         <Link to="/" className=" font-semibold text-3xl">
@@ -45,20 +62,43 @@ const Navbar = () => {
         </Link>
       </div>
       <div className=" font-semibold text-base navbar-center hidden lg:flex mt-1">
-        <ul className="menu menu-horizontal p-0">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <a>My Portfolio</a>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
-          <li>
-            <Link to="/signin">Sign In</Link>
-          </li>
-        </ul>
+        {user ? (
+          <ul className="menu menu-horizontal p-0">
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <Link to="/myportfolio">My Portfolio</Link>
+            </li>
+            <li>
+              <Link to="/blogs">Blogs</Link>
+            </li>
+            <li>
+              <Link to="/myportfolio">{user?.displayName}</Link>
+            </li>
+            <button
+              onClick={handelSignOut}
+              className="btn btn-xs sm:btn-sm md:btn-md font-semibold"
+            >
+              Sign Out
+            </button>
+          </ul>
+        ) : (
+          <ul className="menu menu-horizontal p-0">
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <a>My Portfolio</a>
+            </li>
+            <li>
+              <Link to="/blogs">Blogs</Link>
+            </li>
+            <li>
+              <Link to="/signin">Sign In</Link>
+            </li>
+          </ul>
+        )}
       </div>
       <div className="navbar-end">
         <div className="form-control">

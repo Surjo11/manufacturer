@@ -17,6 +17,7 @@ const SignIn = () => {
   // Firebase Hooks for Email & Password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
   // HookForm
   const {
     register,
@@ -34,6 +35,7 @@ const SignIn = () => {
   // User
   useEffect(() => {
     if (user || gUser) {
+      console.log(user);
       console.log(gUser);
       navigate("/home");
     }
@@ -89,7 +91,7 @@ const SignIn = () => {
                 Password
               </label>
               <input
-                placeholder="Your Password"
+                placeholder="••••••••"
                 type="password"
                 {...register("password", {
                   required: true,
@@ -102,12 +104,10 @@ const SignIn = () => {
               />
               <p className="text-red-700 mt-2">{errors.password?.message}</p>
             </div>
-            <div>
-              <label className="label">
-                <a href="#" class="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
+            <div className="text-sm">
+              <button className="font-medium text-blue-600 hover:text-blue-500 btn-link">
+                Forgot your password?
+              </button>
             </div>
             <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 uppercase">
               Sign In

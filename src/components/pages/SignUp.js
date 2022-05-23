@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../shared/Loading";
 const SignUp = () => {
   const navigate = useNavigate();
-  //   FirebaseHooks
+
+  //   FirebaseHooks for Profile
+  const [updateProfile, updating, uError] = useUpdateProfile(auth);
+  //   FirebaseHooks for Email and Password
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   // HookForm
   const {
@@ -17,9 +23,10 @@ const SignUp = () => {
     handleSubmit,
     reset,
   } = useForm();
-  const onSubmit = async (data, e) => {
-    // console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.displayName });
     reset();
   };
 
@@ -45,7 +52,7 @@ const SignUp = () => {
           className="max-w-lg border rounded-lg mx-auto"
         >
           <div className="flex flex-col gap-4 p-4 md:p-8">
-            {/* <div>
+            <div>
               <label
                 htmlFor="text"
                 className="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -54,11 +61,12 @@ const SignUp = () => {
               </label>
               <input
                 placeholder="Your Name"
-                {...register("name", { required: true })}
+                {...register("displayName", {
+                  required: true,
+                })}
                 className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
-              <p className="text-red-700 mt-2">{errors.email?.message}</p>
-            </div> */}
+            </div>
             <div>
               <label
                 htmlFor="email"
@@ -87,7 +95,7 @@ const SignUp = () => {
                 Password
               </label>
               <input
-                placeholder="Your Password"
+                placeholder="••••••••"
                 type="password"
                 {...register("password", {
                   required: true,
