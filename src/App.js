@@ -4,6 +4,7 @@ import Blogs from "./components/pages/Blogs";
 import Home from "./components/pages/Home/Home";
 import NotFound from "./components/pages/NotFound";
 import SignIn from "./components/pages/SignIn";
+import SignUp from "./components/pages/SignUp";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="blogs" element={<Blogs></Blogs>} />
         <Route path="signin" element={<SignIn></SignIn>} />
         <Route path="signin" element={<SignIn></SignIn>} />
+        <Route path="signup" element={<SignUp></SignUp>} />
         <Route path="*" element={<NotFound></NotFound>} />
       </Routes>
       <Footer></Footer>
