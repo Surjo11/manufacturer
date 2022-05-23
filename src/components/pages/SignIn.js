@@ -1,37 +1,53 @@
-import React from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect } from "react";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../shared/Loading";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  // Firebase Hooks for google
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-  // Firebase Hooks
+  // Firebase Hooks for Email & Password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
   // HookForm
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
-  const onSubmit = (data, e) => {
+  const onSubmit = (data) => {
     // console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
-    e.target.reset();
+    reset();
   };
 
+  // User
+  useEffect(() => {
+    if (user || gUser) {
+      console.log(gUser);
+      navigate("/home");
+    }
+  });
+
+  // Error
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.message);
+    }
+  });
   // Loading Component
   if (loading) {
     return <Loading></Loading>;
-  }
-  // User
-  if (user) {
-    navigate("/home");
   }
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
@@ -65,7 +81,6 @@ const SignIn = () => {
               />
               <p className="text-red-700 mt-2">{errors.email?.message}</p>
             </div>
-
             <div>
               <label
                 htmlFor="password"
@@ -87,7 +102,13 @@ const SignIn = () => {
               />
               <p className="text-red-700 mt-2">{errors.password?.message}</p>
             </div>
-
+            <div>
+              <label className="label">
+                <a href="#" class="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
             <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 uppercase">
               Sign In
             </button>
@@ -97,7 +118,10 @@ const SignIn = () => {
                 Sign in with social
               </span>
             </div>
-            <button className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"
+            >
               <svg
                 className="w-5 h-5 shrink-0"
                 width="24"

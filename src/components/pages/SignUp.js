@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../shared/Loading";
-import { Toaster } from "react-hot-toast";
 const SignUp = () => {
   const navigate = useNavigate();
   //   FirebaseHooks
@@ -16,29 +15,31 @@ const SignUp = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
   const onSubmit = async (data, e) => {
     // console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
-    e.target.reset();
+    reset();
   };
 
-  //   Error
+  // User
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  });
+  //   Loading Component
   if (loading) {
     return <Loading></Loading>;
   }
 
-  // User
-  if (user) {
-    navigate("/signin");
-  }
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
-      <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
+      <div className="max-w-screen-2xl px-4 md:px-8 mx-auto mb-14">
         <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">
           Sign Up
         </h2>
-
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-lg border rounded-lg mx-auto"
@@ -101,10 +102,9 @@ const SignUp = () => {
             </div>
 
             <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3 uppercase">
-              Sign In
+              Sign Up
             </button>
           </div>
-
           <div className="flex justify-center items-center bg-gray-100 p-4">
             <p className="text-gray-500 text-sm text-center">
               Already have an account?
@@ -117,7 +117,6 @@ const SignUp = () => {
             </p>
           </div>
         </form>
-        <Toaster />
       </div>
     </div>
   );
