@@ -10,10 +10,7 @@ const SignUp = () => {
   //   FirebaseHooks
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  // User
-  if (user) {
-    navigate("/signin");
-  }
+
   // HookForm
   const {
     register,
@@ -27,9 +24,13 @@ const SignUp = () => {
   };
 
   //   Error
-
   if (loading) {
     return <Loading></Loading>;
+  }
+
+  // User
+  if (user) {
+    navigate("/signin");
   }
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">
