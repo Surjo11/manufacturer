@@ -45,7 +45,7 @@ const Navbar = () => {
                 <Link to="/blogs">Blogs</Link>
               </li>
               <li>
-                <Link to="/myportfolio">{user?.displayName}</Link>
+                <Link to="#">{user?.displayName}</Link>
               </li>
               <button
                 onClick={handelSignOut}
@@ -91,7 +91,7 @@ const Navbar = () => {
               <Link to="/blogs">Blogs</Link>
             </li>
             <li>
-              <Link to="/myportfolio">{user?.displayName}</Link>
+              <Link to="#">{user?.displayName}</Link>
             </li>
             <button
               onClick={handelSignOut}

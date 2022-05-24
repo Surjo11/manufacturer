@@ -10,7 +10,7 @@ import Loading from "../shared/Loading";
 const SignUp = () => {
   const navigate = useNavigate();
 
-  //   FirebaseHooks for Profile
+  //   FirebaseHooks for User Name
   const [updateProfile, updating, uError] = useUpdateProfile(auth);
   //   FirebaseHooks for Email and Password
   const [createUserWithEmailAndPassword, user, loading, error] =
