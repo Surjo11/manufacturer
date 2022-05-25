@@ -9,8 +9,8 @@ import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
-import Payment from "./components/pages/Payment";
 import RequireAuth from "./components/shared/RequireAuth";
+import Purchase from "./components/pages/Purchase";
 
 function App() {
   return (
@@ -20,10 +20,10 @@ function App() {
         <Route path="/" element={<Home></Home>} />
         <Route path="home" element={<Home></Home>} />
         <Route
-          path="payment"
+          path="purchase/:partId"
           element={
             <RequireAuth>
-              <Payment></Payment>
+              <Purchase></Purchase>
             </RequireAuth>
           }
         />
