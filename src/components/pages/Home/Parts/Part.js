@@ -20,10 +20,10 @@ const Part = (props) => {
         <p className="text-sm text-gray-500">{description}</p>
         <div className="flex justify-between">
           <span className="text-lg font-medium">
-            Minimum Order Quantity: {minimumquantity}
+            Minimum Order: {minimumquantity}
           </span>
           <span className="text-lg font-medium">
-            Available Quantity: {availablequantity}
+            Available: {availablequantity}
           </span>
         </div>
         <div className="card-actions justify-center mt-5">

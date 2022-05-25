@@ -5,11 +5,13 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../shared/Loading";
 
 const SignIn = () => {
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   // Firebase Hooks for google
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -37,7 +39,7 @@ const SignIn = () => {
     if (user || gUser) {
       console.log(user);
       console.log(gUser);
-      navigate("/home");
+      navigate(from, { replace: true });
     }
   });
 
