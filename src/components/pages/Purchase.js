@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -12,6 +13,22 @@ const Purchase = () => {
       response.json()
     )
   );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      quantity: part?.quantity,
+    },
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+    // const newValue = data.quantity;
+    // console.log(newValue);
+  };
+  console.log(isValid);
   return (
     <div className="mt-10 px-2 md:flex flex-wrap justify-evenly items-center">
       <div class="card w-auto mb-5 lg:card-side bg-base-100 shadow-xl">
@@ -24,7 +41,6 @@ const Purchase = () => {
           <p className="w-auto md:w-96 text-sm text-gray-500">
             {part?.description}
           </p>
-
           <p className="text-lg font-medium text-orange-600">
             Minimum Order: {part?.minimumquantity}
           </p>
@@ -33,6 +49,7 @@ const Purchase = () => {
           </p>
         </div>
       </div>
+      {/* Form Infomation */}
       <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <div class="mb-10 md:mb-16">
@@ -40,8 +57,11 @@ const Purchase = () => {
               Fill Your Some Information
             </h2>
           </div>
-          <form class="max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto">
-            <div class="sm:col-span-2">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            class="max-w-screen-md mx-auto"
+          >
+            <div class="sm:col-span-2 mb-2">
               <label
                 for="name"
                 class="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -54,8 +74,7 @@ const Purchase = () => {
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
             </div>
-
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-2 mb-2">
               <label
                 for="email"
                 class="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -68,7 +87,7 @@ const Purchase = () => {
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
             </div>
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-2 mb-2">
               <label
                 for="address"
                 class="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -76,11 +95,11 @@ const Purchase = () => {
                 Address
               </label>
               <input
-                name="address"
+                {...register("address", { required: true })}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
             </div>
-            <div class="sm:col-span-2">
+            <div class="sm:col-span-2 mb-2">
               <label
                 for="number"
                 class="inline-block text-gray-800 text-sm sm:text-base mb-2"
@@ -88,14 +107,77 @@ const Purchase = () => {
                 Phone
               </label>
               <input
-                name="phone"
+                {...register("number", { required: true })}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
             </div>
+            {/* Quantity Information */}
+            <div class="sm:col-span-2 mb-2">
+              <label
+                for="number"
+                class="inline-block text-gray-800 text-sm sm:text-base mb-2"
+              >
+                Enter Your Order
+              </label>
+              <input
+                type="number"
+                placeholder={part?.minimumquantity}
+                {...register("quantity", {
+                  required: true,
+                  max: {
+                    value: part?.availablequantity,
+                    message: `You can't order more than ${part?.availablequantity} parts`,
+                  },
+                  min: {
+                    value: part?.minimumquantity,
+                    message: `You have to order at least ${part?.minimumquantity} parts`,
+                  },
+                })}
+                class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+              />
+              <p className="text-red-700 mt-2">{errors.quantity?.message}</p>
+            </div>
+            {isValid ? (
+              <button className="flex justify-center items-center w-full mt-5 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+                Purchase
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </button>
+            ) : (
+              <button
+                disabled
+                className="flex justify-center items-center w-full mt-5 bg-indigo-500 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none px-8 py-3 opacity-25"
+              >
+                Purchase
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </button>
+            )}
           </form>
-          <button class="inline-block w-full mt-5 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
-            Send
-          </button>
         </div>
       </div>
     </div>
