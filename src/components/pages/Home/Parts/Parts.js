@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import Loading from "../../shared/Loading";
+import Loading from "../../../shared/Loading";
 import Part from "./Part";
 
 const Parts = () => {
@@ -14,7 +14,7 @@ const Parts = () => {
 
   return (
     <div>
-      <h1 className="text-center font-semibold text-3xl mb-5 mt-5 md:text-4xl md:mt-10 ">
+      <h1 className="text-gray-800 text-2xl lg:text-4xl font-bold text-center mb-4 md:mb-8 xl:mb-12">
         Parts
       </h1>
       <div className="grid grid-cols-1 px-2 gap-10 md:grid-cols-3 md:px-12">
