@@ -4,37 +4,29 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 min-h-screen flex justify-center items-center">
-      <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
-        <div className="flex flex-col items-center">
-          {/* <!-- logo - start --> */}
-          <a
-            href="/"
-            className="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5 mb-8"
-            aria-label="logo"
-          >
-            Bit by Bit
-          </a>
-          {/* <!-- logo - end --> */}
-
-          <p className="text-indigo-500 text-sm md:text-base font-semibold uppercase mb-4">
-            That's a 404
-          </p>
-          <h1 className="text-gray-800 text-2xl md:text-3xl font-bold text-center mb-2">
-            Page not found
-          </h1>
-
-          <p className="max-w-screen-md text-gray-500 md:text-lg text-center mb-12">
-            The page you're looking for doesn't exist.
-          </p>
-
-          <Link
-            to="/home"
-            className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-          >
-            Go home
-          </Link>
+      <section className="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
+        <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+          <div className="max-w-md text-center">
+            <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
+              <span className="sr-only">Error</span>404
+            </h2>
+            <p className="text-2xl font-semibold md:text-3xl">
+              Sorry, we couldn't find this page.
+            </p>
+            <p className="mt-4 mb-8 dark:text-gray-400">
+              But dont worry, you can find plenty of other things on our
+              homepage.
+            </p>
+            <Link
+              rel="noopener noreferrer"
+              to="/home"
+              className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
+            >
+              Back to home
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

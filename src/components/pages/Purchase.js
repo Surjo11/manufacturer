@@ -28,7 +28,6 @@ const Purchase = () => {
     // const newValue = data.quantity;
     // console.log(newValue);
   };
-  console.log(isValid);
   return (
     <div className="mt-10 px-2 md:flex flex-wrap justify-evenly items-center">
       <div class="card w-auto mb-5 lg:card-side bg-base-100 shadow-xl">

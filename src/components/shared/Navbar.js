@@ -45,6 +45,9 @@ const Navbar = () => {
                 <Link to="/blogs">Blogs</Link>
               </li>
               <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
                 <Link to="#">{user?.displayName}</Link>
               </li>
               <button
@@ -78,7 +81,7 @@ const Navbar = () => {
           Bit by Bit
         </Link>
       </div>
-      <div className=" font-semibold text-base navbar-center hidden lg:flex mt-1">
+      <div className=" font-semibold text-base navbar-end hidden lg:flex mt-1">
         {user ? (
           <ul className="menu menu-horizontal p-0">
             <li>
@@ -89,6 +92,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/blogs">Blogs</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <Link to="#">{user?.displayName}</Link>
@@ -116,15 +122,6 @@ const Navbar = () => {
             </li>
           </ul>
         )}
-      </div>
-      <div className="navbar-end">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-32 lg:w-52"
-          />
-        </div>
       </div>
     </div>
   );
