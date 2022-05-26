@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import auth from "../../firebase.init";
 
 const Purchase = () => {
@@ -17,6 +18,7 @@ const Purchase = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -25,8 +27,25 @@ const Purchase = () => {
   });
   const onSubmit = (data) => {
     console.log(data);
-    // const newValue = data.quantity;
-    // console.log(newValue);
+    const url = `http://localhost:5000/orders`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Ordered",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        reset();
+      });
   };
   return (
     <div className="mt-10 px-2 md:flex flex-wrap justify-evenly items-center">
@@ -60,6 +79,19 @@ const Purchase = () => {
             onSubmit={handleSubmit(onSubmit)}
             class="max-w-screen-md mx-auto"
           >
+            {/* <div class="sm:col-span-2 mb-2">
+              <label
+                for="partName"
+                class="inline-block text-gray-800 text-sm sm:text-base mb-2"
+              >
+                Part Name
+              </label>
+              <input
+                {...register("partName")}
+                value={part?.name}
+                class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+              />
+            </div> */}
             <div class="sm:col-span-2 mb-2">
               <label
                 for="name"
@@ -68,7 +100,7 @@ const Purchase = () => {
                 Name
               </label>
               <input
-                name="text"
+                {...register("name")}
                 value={user?.displayName}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
@@ -81,7 +113,7 @@ const Purchase = () => {
                 Email
               </label>
               <input
-                name="email"
+                {...register("email")}
                 value={user?.email}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
@@ -138,7 +170,7 @@ const Purchase = () => {
             </div>
             {isValid ? (
               <button className="flex justify-center items-center w-full mt-5 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
-                Purchase
+                Order Now
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5"
@@ -159,7 +191,7 @@ const Purchase = () => {
                 disabled
                 className="flex justify-center items-center w-full mt-5 bg-indigo-500 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none px-8 py-3 opacity-25"
               >
-                Purchase
+                Order Now
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5"

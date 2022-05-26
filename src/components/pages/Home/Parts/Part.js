@@ -38,7 +38,7 @@ const Part = (props) => {
             onClick={() => handelPurchase(_id)}
             className="btn bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white border-none"
           >
-            Buy Now
+            Book Now
           </button>
         </div>
       </div>

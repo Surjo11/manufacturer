@@ -13,7 +13,7 @@ import RequireAuth from "./components/shared/RequireAuth";
 import Purchase from "./components/pages/Purchase";
 import Dashboard from "./components/pages/Dashboard/Dashboard";
 import MyProfile from "./components/pages/Dashboard/MyProfile";
-import MyOrders from "./components/pages/Dashboard/MyOrders";
+import MyOrders from "./components/pages/Dashboard/MyOrders/MyOrders";
 import AddAReview from "./components/pages/Dashboard/AddAReview";
 
 function App() {

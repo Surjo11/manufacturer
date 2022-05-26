@@ -6,7 +6,7 @@ const Dashboard = () => {
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <h1 className="text-xl md:text-4xl text-center">
+        <h1 className="text-gray-800 text-2xl lg:text-4xl font-bold text-center mb-4 md:mb-8 xl:mb-12">
           Welcome to Dashboard
           <label for="my-drawer-2" class="btn-square drawer-button lg:hidden">
             <svg
@@ -28,7 +28,7 @@ const Dashboard = () => {
       </div>
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content rounded-lg">
+        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link to="/dashboard">My Orders</Link>
