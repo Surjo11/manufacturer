@@ -1,12 +1,22 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+// import { useQuery } from "react-query";
+import auth from "../../../../firebase.init";
 import MyOrder from "./MyOrder";
 
 const MyOrders = () => {
-  // Load All Orders
-  const { data: orders } = useQuery("orders", () =>
-    fetch("http://localhost:5000/orders").then((response) => response.json())
-  );
+  const [user] = useAuthState(auth);
+  const [orders, setOrders] = useState([]);
+  const email = user?.email;
+  useEffect(() => {
+    fetch(`http://localhost:5000/orders?email=${email}`, {
+      headers: {
+        authorization: `${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setOrders(data));
+  }, [orders]);
   return (
     <div class="overflow-x-auto">
       <table class="table table-normal w-full">

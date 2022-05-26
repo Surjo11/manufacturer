@@ -26,8 +26,11 @@ const Purchase = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
     const url = `http://localhost:5000/orders`;
+    // const partInformation = {
+    //   partImage: part?.image,
+    //   partName: part?.name,
+    // };
     fetch(url, {
       method: "POST",
       headers: {
@@ -79,28 +82,15 @@ const Purchase = () => {
             onSubmit={handleSubmit(onSubmit)}
             class="max-w-screen-md mx-auto"
           >
-            {/* <div class="sm:col-span-2 mb-2">
-              <label
-                for="partName"
-                class="inline-block text-gray-800 text-sm sm:text-base mb-2"
-              >
-                Part Name
-              </label>
-              <input
-                {...register("partName")}
-                value={part?.name}
-                class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
-              />
-            </div> */}
             <div class="sm:col-span-2 mb-2">
               <label
-                for="name"
+                for="displayName"
                 class="inline-block text-gray-800 text-sm sm:text-base mb-2"
               >
                 Name
               </label>
               <input
-                {...register("name")}
+                {...register("displayName")}
                 value={user?.displayName}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  useAuthState,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -17,9 +18,28 @@ const SignIn = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   // Firebase Hooks for Email & Password
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, epUser, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+  const [user] = useAuthState(auth);
+
+  if (user) {
+    const url = "http://localhost:5000/signin";
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: user.email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        navigate(from, { replace: true });
+      });
+  }
   // HookForm
   const {
     register,
@@ -36,9 +56,7 @@ const SignIn = () => {
 
   // User
   useEffect(() => {
-    if (user || gUser) {
-      console.log(user);
-      console.log(gUser);
+    if (gUser) {
       navigate(from, { replace: true });
     }
   });

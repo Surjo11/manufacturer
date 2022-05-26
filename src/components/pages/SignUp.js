@@ -33,7 +33,7 @@ const SignUp = () => {
   // User
   useEffect(() => {
     if (user) {
-      navigate("/home");
+      navigate("/signin");
     }
   });
   //   Loading Component
