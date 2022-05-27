@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -9,6 +9,13 @@ const Navbar = () => {
   const handelSignOut = () => {
     signOut(auth);
   };
+
+  const [name, setName] = useState("");
+  useEffect(() => {
+    if (user) {
+      setName(user.displayName);
+    }
+  }, [user]);
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -47,7 +54,7 @@ const Navbar = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <Link to="#">{user?.displayName}</Link>
+                <Link to="#">{name}</Link>
               </li>
               <button
                 onClick={handelSignOut}
@@ -96,7 +103,7 @@ const Navbar = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="#">{user?.displayName}</Link>
+              <Link to="#">{name}</Link>
             </li>
             <button
               onClick={handelSignOut}

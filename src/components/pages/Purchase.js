@@ -26,20 +26,27 @@ const Purchase = () => {
     },
   });
   const onSubmit = (data) => {
+    console.log(data);
     const url = `http://localhost:5000/orders`;
-    // const partInformation = {
-    //   partImage: part?.image,
-    //   partName: part?.name,
-    // };
+    const partInformation = {
+      address: data.address,
+      quantity: data.quantity,
+      number: data.number,
+      partImage: part?.image,
+      partName: part?.name,
+    };
+    // console.log(partInformation);
     fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(partInformation),
     })
       .then((res) => res.json())
-      .then(() => {
+      .then((partInformation) => {
+        // console.log(data);
+        // console.log(partInformation);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -50,6 +57,7 @@ const Purchase = () => {
         reset();
       });
   };
+
   return (
     <div className="mt-10 px-2 md:flex flex-wrap justify-evenly items-center">
       <div class="card w-auto mb-5 lg:card-side bg-base-100 shadow-xl">

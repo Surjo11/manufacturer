@@ -15,6 +15,7 @@ import Dashboard from "./components/pages/Dashboard/Dashboard";
 import MyProfile from "./components/pages/Dashboard/MyProfile";
 import MyOrders from "./components/pages/Dashboard/MyOrders/MyOrders";
 import AddAReview from "./components/pages/Dashboard/AddAReview";
+import MakeAdmin from "./components/pages/Dashboard/Admin/MakeAdmin";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route index element={<MyOrders></MyOrders>} />
           <Route path="addareview" element={<AddAReview></AddAReview>} />
           <Route path="myprofile" element={<MyProfile></MyProfile>} />
+          <Route path="makeadmin" element={<MakeAdmin></MakeAdmin>} />
         </Route>
         <Route path="myportfolio" element={<MyPortfolio></MyPortfolio>} />
         <Route path="blogs" element={<Blogs></Blogs>} />

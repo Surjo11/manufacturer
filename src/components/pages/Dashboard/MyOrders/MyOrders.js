@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import { useQuery } from "react-query";
 import auth from "../../../../firebase.init";
 import MyOrder from "./MyOrder";
 
@@ -23,8 +22,7 @@ const MyOrders = () => {
         <thead>
           <tr>
             <th></th>
-            <th>Email</th>
-            <th>Part Name</th>
+            <th>Part Information</th>
             <th>Order Quantity</th>
             <th>Address</th>
             <th>Phone</th>

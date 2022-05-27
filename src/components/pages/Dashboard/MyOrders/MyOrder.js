@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 
 const MyOrder = (props) => {
-  const { _id, email, partName, quantity, address, number } = props.order;
+  const { _id, partImage, partName, quantity, address, number } = props.order;
   const { data: orders, refetch } = useQuery("orders", () =>
     fetch("http://localhost:5000/orders").then((response) => response.json())
   );
@@ -32,8 +32,18 @@ const MyOrder = (props) => {
   return (
     <tr>
       <th>{props.index + 1}</th>
-      <td>{email}</td>
-      <td>{partName}</td>
+      <td>
+        <div class="flex items-center space-x-3">
+          <div class="avatar">
+            <div class="mask mask-squircle w-16 h-16">
+              <img src={partImage} alt="partImage" />
+            </div>
+          </div>
+          <div>
+            <div class="font-bold">{partName}</div>
+          </div>
+        </div>
+      </td>
       <td>{quantity}</td>
       <td>{address}</td>
       <td>{number}</td>
