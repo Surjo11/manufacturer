@@ -26,9 +26,11 @@ const Purchase = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const url = `http://localhost:5000/orders`;
     const partInformation = {
+      displayName: data.displayName,
+      email: data.email,
       address: data.address,
       quantity: data.quantity,
       number: data.number,
@@ -136,9 +138,12 @@ const Purchase = () => {
                 Phone
               </label>
               <input
-                {...register("number", { required: true })}
+                {...register("number", {
+                  required: true,
+                })}
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
               />
+              <p className="text-red-700 mt-2">{errors.number?.message}</p>
             </div>
             {/* Quantity Information */}
             <div class="sm:col-span-2 mb-2">

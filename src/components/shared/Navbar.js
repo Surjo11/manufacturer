@@ -8,6 +8,7 @@ const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
   const handelSignOut = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
   };
 
   const [name, setName] = useState("");

@@ -6,16 +6,16 @@ import MyOrder from "./MyOrder";
 const MyOrders = () => {
   const [user] = useAuthState(auth);
   const [orders, setOrders] = useState([]);
-  const email = user?.email;
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${email}`, {
+    fetch(`http://localhost:5000/orders?email=${user.email}`, {
       headers: {
-        authorization: `${localStorage.getItem("accessToken")}`,
+        method: "GET",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((response) => response.json())
       .then((data) => setOrders(data));
-  }, [orders]);
+  }, [user]);
   return (
     <div class="overflow-x-auto">
       <table class="table table-normal w-full">

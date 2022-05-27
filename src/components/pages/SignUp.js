@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -29,25 +29,26 @@ const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-  // User
-  const [token] = useToken(user || gmUser);
-
-  //   Loading Component
-  if (loading || gmLoading || updating) {
-    return <Loading></Loading>;
-  }
-
-  // User
-  if (token) {
-    navigate("/home");
-  }
-
   const onSubmit = async (data) => {
     // console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.displayName });
     reset();
   };
+
+  // User
+  const [token] = useToken(user || gmUser);
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+  });
+
+  //   Loading Component
+  if (loading || gmLoading || updating) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 mt-10">

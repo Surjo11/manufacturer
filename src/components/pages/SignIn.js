@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../hooks/useToken";
 import Loading from "../shared/Loading";
 
 const SignIn = () => {
@@ -15,31 +16,13 @@ const SignIn = () => {
   let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   // Firebase Hooks for google
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gmUser, gLoading, gError] =
+    useSignInWithGoogle(auth);
 
   // Firebase Hooks for Email & Password
-  const [signInWithEmailAndPassword, epUser, loading, error] =
+  const [signInWithEmailAndPassword, epUser, epLoading, epError] =
     useSignInWithEmailAndPassword(auth);
 
-  const [user] = useAuthState(auth);
-
-  if (user) {
-    const url = "http://localhost:5000/signin";
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        email: user.email,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("accessToken", data.token);
-        navigate(from, { replace: true });
-      });
-  }
   // HookForm
   const {
     register,
@@ -54,21 +37,23 @@ const SignIn = () => {
     reset();
   };
 
-  // User
+  // Error
   useEffect(() => {
-    if (gUser) {
+    if (epError || gError) {
+      toast.error(epError?.message);
+    }
+  });
+
+  // User
+  const [token] = useToken(epUser || gmUser);
+  useEffect(() => {
+    if (token) {
       navigate(from, { replace: true });
     }
   });
 
-  // Error
-  useEffect(() => {
-    if (error) {
-      toast.error(error?.message);
-    }
-  });
   // Loading Component
-  if (loading) {
+  if (epLoading || gLoading) {
     return <Loading></Loading>;
   }
   return (
