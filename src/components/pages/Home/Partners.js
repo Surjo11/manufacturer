@@ -18,35 +18,35 @@ const Partners = () => {
             <img
               className="h-4 mx-auto lg:h-12"
               src="https://svgshare.com/i/hf1.svg"
-              alt="Figma"
+              alt="Ryzen"
             />
           </div>
           <div>
             <img
               className="h-4 mx-auto lg:h-12"
               src="https://svgshare.com/i/hfV.svg"
-              alt="Framer"
+              alt="Intel"
             />
           </div>
           <div>
             <img
               className="h-4 mx-auto lg:h-12"
               src="https://svgshare.com/i/hfp.svg"
-              alt="Sketch "
+              alt="Gigabyte"
             />
           </div>
           <div>
             <img
               className="h-4 mx-auto lg:h-12"
               src="https://svgshare.com/i/hfe.svg"
-              alt="Sketch "
+              alt="Corsair"
             />
           </div>
           <div>
             <img
               className="h-4 mx-auto lg:h-12"
               src="https://svgshare.com/i/hff.svg"
-              alt="Invision"
+              alt="BenQ"
             />
           </div>
         </div>

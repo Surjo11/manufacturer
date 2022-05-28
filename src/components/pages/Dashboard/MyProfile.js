@@ -17,7 +17,7 @@ const MyProfile = () => {
     const res = await fetch(`http://localhost:5000/users?email=${user?.email}`);
     return res.json();
   });
-  console.log(users);
+  // console.log(users);
   if (isLoading) {
     return <Loading></Loading>;
   }
