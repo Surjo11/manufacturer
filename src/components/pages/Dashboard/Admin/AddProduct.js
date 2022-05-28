@@ -18,7 +18,7 @@ const AddPart = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Successfully Added",
+          title: "Part Added Successfully",
           showConfirmButton: false,
           timer: 2000,
         });

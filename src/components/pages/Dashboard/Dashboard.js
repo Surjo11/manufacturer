@@ -9,11 +9,14 @@ const Dashboard = () => {
   const [admin] = useAdmin(user);
   return (
     <div class="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+      <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <h1 className="text-gray-800 text-2xl lg:text-4xl font-bold text-center mb-4 md:mb-8 xl:mb-12">
           Welcome to Dashboard
-          <label for="my-drawer-2" class="btn-square drawer-button lg:hidden">
+          <label
+            for="dashboard-drawer"
+            class="btn-square drawer-button lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -32,7 +35,7 @@ const Dashboard = () => {
         <Outlet></Outlet>
       </div>
       <div class="drawer-side">
-        <label for="my-drawer-2" class="drawer-overlay"></label>
+        <label for="dashboard-drawer" class="drawer-overlay"></label>
         {admin ? (
           <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             <li>

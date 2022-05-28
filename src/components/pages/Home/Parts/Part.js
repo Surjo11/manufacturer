@@ -19,7 +19,7 @@ const Part = (props) => {
   return (
     <div className="card w-auto bg-base-100 shadow-xl">
       <figure>
-        <img className="p-3 w-80 h-80" src={image} alt="Computer Parts" />
+        <img className="p-3 w-96 h-96" src={image} alt="Computer Parts" />
       </figure>
       <div className="card-body">
         <h2 className=" font-bold text-center text-2xl">{name}</h2>

@@ -24,6 +24,7 @@ const SignUp = () => {
 
   //   FirebaseHooks for User Name
   const [updateProfile, updating, uError] = useUpdateProfile(auth);
+  // console.log(updateProfile);
 
   //   FirebaseHooks for Email and Password
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -38,6 +39,7 @@ const SignUp = () => {
 
   // User
   const [token] = useToken(user || gmUser);
+  // console.log(gmUser);
 
   useEffect(() => {
     if (token) {

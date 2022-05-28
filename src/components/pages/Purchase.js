@@ -64,7 +64,7 @@ const Purchase = () => {
     <div className="mt-10 px-2 md:flex flex-wrap justify-evenly items-center">
       <div class="card w-auto mb-5 lg:card-side bg-base-100 shadow-xl">
         <figure>
-          <img className="w-80 h-80" src={part?.image} alt="Album" />
+          <img className="w-96 h-96" src={part?.image} alt="Album" />
         </figure>
         <div class="card-body">
           <h2 class="font-bold text-xl md:text-xl">{part?.name}</h2>
