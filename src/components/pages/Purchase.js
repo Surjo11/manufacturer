@@ -36,6 +36,7 @@ const Purchase = () => {
       number: data.number,
       partImage: part?.image,
       partName: part?.name,
+      price: part?.price,
     };
     // console.log(partInformation);
     fetch(url, {

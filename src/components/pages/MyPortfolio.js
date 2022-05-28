@@ -107,7 +107,10 @@ const MyPortfolio = () => {
                 alt="hero"
                 src="https://i.postimg.cc/j2WJ63nd/Screenshot-3.png"
               />
-              <a className="link text-xl" href="">
+              <a
+                className="link text-xl"
+                href="https://bit-by-bit-manufacturer.web.app/"
+              >
                 Live Website
               </a>
             </div>
