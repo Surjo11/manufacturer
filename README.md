@@ -15,7 +15,6 @@ that's why you have to reload once to show you name (for this website in Navbar 
 - There is a many of different companies where we are collecting our Parts.
 - Showing our business summary and also customer Reviews.
 - Used firebase authentication for the login form and Handel form with 'React hook form'.
-- Used JWT(JSON Web Token) to secure our data.
 - Used React route,firebase authentication,tailwind components,react hot toast and many more.
 
 ## List of libraries

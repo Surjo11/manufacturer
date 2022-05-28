@@ -1,13 +1,27 @@
+import axios from "axios";
 import React from "react";
+import { useQuery } from "react-query";
 import Swal from "sweetalert2";
+import Loading from "../../../shared/Loading";
 
-const MyOrder = ({ order, index, refetch }) => {
-  const { partImage, partName, quantity, address, number, price, email } =
+const ManageOrder = ({ order, index }) => {
+  const { _Id, email, partImage, partName, quantity, address, number, price } =
     order;
-  const handelDeleteBtn = (email) => {
-    fetch(`http://localhost:5000/order/${email}`, {
-      method: "DELETE",
-    }).then((res) => res.json());
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery("orders", () =>
+    fetch("https://guarded-bastion-46799.herokuapp.com/orders").then(
+      (response) => response.json()
+    )
+  );
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  const handelDeleteBtn = (orderId) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -18,6 +32,11 @@ const MyOrder = ({ order, index, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        const url = `https://guarded-bastion-46799.herokuapp.com/order/${orderId}`;
+        axios.delete(
+          url,
+          orders.filter((order) => order._id !== orders?._Id)
+        );
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         refetch();
       }
@@ -38,13 +57,14 @@ const MyOrder = ({ order, index, refetch }) => {
           </div>
         </div>
       </td>
+      <td>{email}</td>
       <td>{quantity}</td>
       <td>{address}</td>
       <td>{number}</td>
       <td>{price}</td>
       <td>
         <button
-          onClick={() => handelDeleteBtn(email)}
+          onClick={() => handelDeleteBtn(_Id)}
           className=" bg-red-600 hover:bg-red-500 text-white rounded-xl p-2"
         >
           <svg
@@ -67,4 +87,4 @@ const MyOrder = ({ order, index, refetch }) => {
   );
 };
 
-export default MyOrder;
+export default ManageOrder;
