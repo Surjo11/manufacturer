@@ -10,8 +10,8 @@ const Purchase = () => {
   const [user] = useAuthState(auth);
   const { partId } = useParams();
   const { data: part } = useQuery("part", () =>
-    fetch(`http://localhost:5000/part/${partId}`).then((response) =>
-      response.json()
+    fetch(`https://guarded-bastion-46799.herokuapp.com/part/${partId}`).then(
+      (response) => response.json()
     )
   );
   const {
@@ -27,7 +27,7 @@ const Purchase = () => {
   });
   const onSubmit = (data) => {
     // console.log(data);
-    const url = `http://localhost:5000/orders`;
+    const url = `https://guarded-bastion-46799.herokuapp.com/orders`;
     const partInformation = {
       displayName: data.displayName,
       email: data.email,

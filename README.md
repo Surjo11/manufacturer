@@ -1,18 +1,29 @@
-# Getting Started with Create React App
+# Bit by Bit Manufacturer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Site- [https://bit-by-bit-manufacturer.web.app/](https://bit-by-bit-manufacturer.web.app/)
 
-## Available Scripts
+# Special Note
 
-In the project directory, you can run:
+If you Sign up with (Email and Password) Please reload the site after Sign up. Reason Firebase hooks have a default issue when a user sign up with (Email and Password) they are not showing the user name first time.
+that's why you have to reload once to show you name (for this website in Navbar Bar).
 
-### `npm start`
+## Project details down below:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Computer Parts Manufacturer Based Website.
+- Showing Our Stored Parts in Home Page.You can't see more than 6 Parts in Home Page.
+- You can Order a Minimum of Parts of Quantity that we Have Mentioned.
+- There is a many of different companies where we are collecting our Parts.
+- Showing our business summary and also customer Reviews.
+- Used firebase authentication for the login form and Handel form with 'React hook form'.
+- Used JWT(JSON Web Token) to secure our data.
+- Used React route,firebase authentication,tailwind components,react hot toast and many more.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## List of libraries
+
+1. React (Javascript Library)
+2. Tailwind (Css Library)
+3. Daisy Ui, Flowrift, Wickedblocks (Tailwind Components based Library)
+4. Firebase-authentication-hooks (Firebase Library)
 
 ### `npm test`
 
@@ -68,4 +79,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # manufacturer-website-client-side-Surjo11

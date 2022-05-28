@@ -33,7 +33,7 @@ const MyPortfolio = () => {
       <section className="dark:bg-gray-800 dark:text-gray-100">
         <div className="container p-6 mx-auto space-y-6 text-center lg:p-8 lg:space-y-8">
           <h2 className="text-3xl font-bold">Skills</h2>
-          <div className="flex flex-wrap justify-center lg:justify-between">
+          <div className="flex flex-wrap justify-center lg:justify-between md:pl-12">
             <img
               src="https://i.postimg.cc/QMxGn28m/png-clipart-responsive-web-design-html-world-wide-web-consortium-world-wide-web-angle-text.png"
               alt=""

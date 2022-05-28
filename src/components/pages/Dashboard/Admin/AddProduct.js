@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const AddPart = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    const url = `http://localhost:5000/parts`;
+    const url = `https://guarded-bastion-46799.herokuapp.com/parts`;
     fetch(url, {
       method: "POST",
       headers: {

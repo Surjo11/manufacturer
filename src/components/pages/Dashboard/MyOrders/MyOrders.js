@@ -12,12 +12,15 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/orders?email=${user.email}`, {
-      headers: {
-        method: "GET",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((response) => response.json())
+    fetch(
+      `https://guarded-bastion-46799.herokuapp.com/orders?email=${user.email}`,
+      {
+        headers: {
+          method: "GET",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((response) => response.json())
   );
   if (isLoading) {
     return <Loading></Loading>;
@@ -32,7 +35,7 @@ const MyOrders = () => {
             <th>Order Quantity</th>
             <th>Address</th>
             <th>Phone</th>
-            <th>Payment</th>
+            <th>Price</th>
             <th>Cancel</th>
           </tr>
         </thead>

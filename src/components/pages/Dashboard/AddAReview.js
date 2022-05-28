@@ -10,7 +10,7 @@ const AddAReview = () => {
     reset,
   } = useForm();
   const onSubmit = (data) => {
-    const url = "http://localhost:5000/reviews";
+    const url = "https://guarded-bastion-46799.herokuapp.com/reviews";
     fetch(url, {
       method: "POST",
       headers: {

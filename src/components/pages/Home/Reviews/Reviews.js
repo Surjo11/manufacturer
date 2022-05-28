@@ -4,7 +4,9 @@ import { useQuery } from "react-query";
 
 const Reviews = () => {
   const { data: reviews } = useQuery("reviews", () =>
-    fetch("http://localhost:5000/reviews").then((response) => response.json())
+    fetch("https://guarded-bastion-46799.herokuapp.com/reviews").then(
+      (response) => response.json()
+    )
   );
 
   return (

@@ -5,7 +5,9 @@ import Part from "./Part";
 
 const Parts = () => {
   const { data: parts, isLoading } = useQuery("parts", () =>
-    fetch("http://localhost:5000/parts").then((response) => response.json())
+    fetch("https://guarded-bastion-46799.herokuapp.com/parts").then(
+      (response) => response.json()
+    )
   );
 
   if (isLoading) {

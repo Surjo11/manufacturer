@@ -14,7 +14,9 @@ const MyProfile = () => {
     isLoading,
     refetch,
   } = useQuery("singleUser", async () => {
-    const res = await fetch(`http://localhost:5000/users?email=${user?.email}`);
+    const res = await fetch(
+      `https://guarded-bastion-46799.herokuapp.com/users?email=${user?.email}`
+    );
     return res.json();
   });
   // console.log(users);
@@ -24,7 +26,7 @@ const MyProfile = () => {
   const onSubmit = (data) => {
     const email = user?.email;
     // console.log(email);
-    const url = `http://localhost:5000/user/${email}`;
+    const url = `https://guarded-bastion-46799.herokuapp.com/user/${email}`;
     fetch(url, {
       method: "PUT",
       headers: {
