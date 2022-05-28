@@ -18,7 +18,7 @@ import MakeAdmin from "./components/pages/Dashboard/Admin/MakeAdmin";
 import RequireAdmin from "./components/pages/Auth/RequireAdmin";
 import RequireAuth from "./components/pages/Auth/RequireAuth";
 import ManageOrders from "./components/pages/Dashboard/Admin/ManageOrders";
-import AddProduct from "./components/pages/Dashboard/Admin/AddProduct";
+import AddPart from "./components/pages/Dashboard/Admin/AddProduct";
 import ManageProducts from "./components/pages/Dashboard/Admin/ManageProducts";
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
             }
           />
           <Route path="manageorders" element={<ManageOrders></ManageOrders>} />
-          <Route path="addproduct" element={<AddProduct></AddProduct>} />
+          <Route path="addpart" element={<AddPart></AddPart>} />
           <Route
             path="manageproducts"
             element={<ManageProducts></ManageProducts>}

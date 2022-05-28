@@ -42,7 +42,7 @@ const Dashboard = () => {
               <Link to="/dashboard/manageorders">Manage All Orders</Link>
             </li>
             <li>
-              <Link to="/dashboard/addareview">Add Product</Link>
+              <Link to="/dashboard/addpart">Add Part</Link>
             </li>
 
             <li>
